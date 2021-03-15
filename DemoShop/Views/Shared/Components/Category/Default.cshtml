@@ -1,0 +1,28 @@
+﻿@model IEnumerable<DemoShop.Models.CategoryViewModel>
+
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+<li>
+    <a>@item.Name</a>
+    DrowCaregories(item.ChildCategories.ToList());
+</li>
+    }
+}
+
+@{
+    void DrowCaregories(List<CategoryViewModel> categories)
+    {
+        if (categories != null)
+        {
+            foreach (var item in categories)
+            {
+                Html.Raw(item.Name);
+                DrowCaregories(item.ChildCategories.ToList());
+            }
+        }
+    }
+
+    }
+
